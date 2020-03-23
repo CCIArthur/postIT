@@ -22,20 +22,31 @@ class PostIt {
     }
 
     afficheTest() {
-        let monElem = document.createElement("div");
-        monElem.className = "notes";
-        monElem.style.position = "fixed";
-        monElem.style.top = this.y + "px";
-        monElem.style.left = this.x + "px";
-        monElem.style.width = "250px";
-        monElem.style.height = "150px";
-        monElem.style.backgroundColor = this.couleur;
-        monElem.style.padding = "5px";
-        monElem.style.color = "black";
-        monElem.innerHTML = ` <h3> ${this.texte} </h3><p>Mon Post-it</p>`;
-        document.body.appendChild(monElem);
-    }
-}
+        let monElem;
+        let creation = false;
 
-PostIt1 = new PostIt(150, 100, "red", "1");
-PostIt2 = new PostIt(350, 300, "yellow", "2");
+        if(document.getElementById("test") == null)
+        {
+            monElem = document.createElement('div');
+            creation = true;
+        }
+        else
+        {
+            monElem = document.getElementById('test');
+        }
+        monElem.style.position = "fixed";
+        monElem.id = 'test';
+        monElem.style.top = this.posY + "px";
+        monElem.style.left = this.posX + "px";
+        monElem.style.width = "150px"; //modifiable par la suite
+        monElem.style.height = "150px"; //modifiable par la suite 
+    }
+
+
+    /*
+     Si ma voiture n'existe pas je l'ajoute au html
+     if (creation) {
+        document.body.appendChild(monElem);
+     }
+     */
+}

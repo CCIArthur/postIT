@@ -1,31 +1,47 @@
-/*monElem.onmousedown = function(event)
+let onBouge = false;
+let x;
+let y;
+//let idBouge = 0;
+const addRed = document.querySelector(".red");
+var tableau = new Array();
+
+addRed.addEventListener("click", function() {
+    console.log("Hello Red");
+    monTest1 = new PostIt(150, 100, "red", "Post ");
+    monTest1.afficheTest();
+    tableau.push(monTest1);
+    console.log(tableau);
+});
+
+
+document.addEventListener('mousemove', e =>
 {
+    x = e.clientX;
+    y = e.clientY;
+});
 
-    let postItX = monElem.getBoundingClientRect().left;
-    let postItY = monElem.getBoundingClientRect().top;
-    let sourisX = event.clientX;
-    let sourisY = event.clientY;
-    let deplacementX = sourisX - postItX;
-    let deplacementY = sourisY - postItY;
-    console.log(deplacementX, deplacementY);
+document.addEventListener('mouseup', () =>
+{
+    console.log("on stop");
+    idBouge = 0
+    onBouge = false;
+});
 
-    monElem.style.position = 'absolute';
-    monElem.style.zIndex = 1;
+document.getElementById('ajouter').addEventListener('mousedown', () => 
+{
+    let pi = new PostIt(150, 100, "red", "1");
+    tableau.push(pi);
+    //onBouge = true;
+    tableau[(tableau.length -1)].afficheTest();
+});
 
-
-    function deplacement(x, y) {
-        monElem.style.left = x - deplacementX + 'px';
-        monElem.style.top = y - deplacementY + 'px';
+function refresh() {
+    if (onBouge && idBouge != 0) {
+        console.log("on déplace !")
+        tabDingo[(idBouge - 1)].changePlace(x, y);
+        tabDingo[(idBouge - 1)].afficheTest();
     }
+    setTimeout(refresh, 200)
+}
 
-    deplacement(event.pageX, event.pageY);
-
-}*/
-
-
-
-//Choix des couleurs de post-its
-const mettreRouge = document.querySelector(".red");
-const mettreVert = document.querySelector(".green");
-const mettreBleu = document.querySelector(".blue");
-const mettreJaune = document.querySelector(".yellow");
+refresh();
