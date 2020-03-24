@@ -5,7 +5,7 @@ let idBouge = 0;
 const addRed = document.querySelector(".red");
 var tableau = new Array();
 
-addRed.addEventListener("click", function() {
+addRed.addEventListener("click", function () {
     console.log("Click rouge");
     monTest1 = new PostIt(150, 100, "red", "Post ");
     monTest1.afficheTest();
@@ -14,30 +14,28 @@ addRed.addEventListener("click", function() {
 });
 
 
-document.addEventListener('mousemove', e =>
-{
+document.addEventListener('mousemove', e => {
     x = e.clientX;
     y = e.clientY;
 });
 
-document.addEventListener('mouseup', () =>
-{
+document.addEventListener('mouseup', () => {
     console.log("on stop");
     idBouge = 0
     onBouge = false;
 });
 
-document.getElementById('ajouter').addEventListener('mousedown', () => 
-{
-    let pi = new PostIt(150, 100, "red", "1");
+document.getElementById('ajouter').addEventListener('mousedown', () => {
+    let pi = new PostIt(150, 100, "red", "1", tableau.length + 1);
     tableau.push(pi);
     //onBouge = true;
-    tableau[(tableau.length -1)].afficheTest();
+    tableau[(tableau.length - 1)].afficheTest();
+    console.log(tableau);
 });
 
 function refresh() {
     if (onBouge && idBouge != 0) {
-        console.log("on déplace !")
+        console.log("on déplace ! "+idBouge)
         tableau[(idBouge - 1)].changePlace(x, y);
         tableau[(idBouge - 1)].afficheTest();
     }
