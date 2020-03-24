@@ -66,6 +66,6 @@ function jdeAttachElem(parentId, elem, classElem = [], idElem = "", fonct = "") 
 
 }
 
-function supprimer(numVoit) {
-    delete tableau[numVoit - 1]
+function supprimer(numero) {
+    delete tableau[numero - 1]
 }
