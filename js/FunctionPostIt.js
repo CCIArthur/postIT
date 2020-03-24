@@ -1,12 +1,12 @@
 let onBouge = false;
 let x;
 let y;
-//let idBouge = 0;
+let idBouge = 0;
 const addRed = document.querySelector(".red");
 var tableau = new Array();
 
 addRed.addEventListener("click", function() {
-    console.log("Hello Red");
+    console.log("Click rouge");
     monTest1 = new PostIt(150, 100, "red", "Post ");
     monTest1.afficheTest();
     tableau.push(monTest1);
@@ -38,10 +38,34 @@ document.getElementById('ajouter').addEventListener('mousedown', () =>
 function refresh() {
     if (onBouge && idBouge != 0) {
         console.log("on déplace !")
-        tabDingo[(idBouge - 1)].changePlace(x, y);
-        tabDingo[(idBouge - 1)].afficheTest();
+        tableau[(idBouge - 1)].changePlace(x, y);
+        tableau[(idBouge - 1)].afficheTest();
     }
-    setTimeout(refresh, 200)
+    setTimeout(refresh, 200);
 }
 
 refresh();
+
+
+// AJOUTER LES BOUTONS AU POSTIT
+function jdeAttachElem(parentId, elem, classElem = [], idElem = "", fonct = "") {
+    let elemACreer = document.createElement(elem)
+    if (classElem.length > 0) {
+        for (let uneClasse in classElem) {
+            elemACreer.classList.add(classElem[uneClasse])
+        }
+
+    }
+    if (idElem != "") {
+        elemACreer.id = idElem
+    }
+    if (fonct != "") {
+        elemACreer.addEventListener('click', fonct);
+    }
+    document.getElementById(parentId).appendChild(elemACreer)
+
+}
+
+function supprimer(numVoit) {
+    delete tableau[numVoit - 1]
+}
